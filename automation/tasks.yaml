@@ -1,0 +1,17 @@
+global:
+  max_concurrency: 3
+  default_timeout: 10
+  retry_count: 2
+
+tasks:
+  - name: Check disk usage
+    command: "df -h"
+    timeout: 5
+
+  - name: List running containers
+    command: "docker ps"
+    retry: 3
+
+  - name: Kubernetes nodes
+    command: "kubectl get nodes"
+    timeout: 8
